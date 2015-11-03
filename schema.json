@@ -1,0 +1,20 @@
+{
+    "title": "Event",
+    "description": "A smart door event",
+    "type": "object",
+    "properties": {
+        "code": {
+            "description": "The code of the event type that has occurred",
+            "type": "integer"
+        },
+        "user": {
+			"description": "The uuid of the person associated with the event",
+            "type": "string"
+        },
+        "note": {
+            "description": "The note left by a visiting user",
+            "type": "string"
+        }
+    },
+    "required": ["event"]
+}
