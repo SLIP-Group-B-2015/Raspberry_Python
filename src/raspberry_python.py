@@ -1,24 +1,32 @@
-__author__="Marshall"
+__author__ = "Marshall"
 
 import nxppy
-#import pygatt
+import pygatt
 import time
 import socket
 import sys
 
+def createsocket():
+	host = "localhost"
+	port = 12000
 
-host = "localhost"
-port = 12000
+	soc = socket.socket()
+	soc.connect((host, port))
+	return soc
 
-soc = socket.socket()
-soc.connect((host, port))
+def runclient(soc)
+	while 1:
+		sendjsons(soc)
 
-i = 0
-while True:
-    soc.sendall("hello " + str(i) + " \n")
-    time.sleep(1)
-    i += 1
+def sendjsons(soc):
+	jsons = ["{\"code\": 1}", "{\"code\": 2}", "{\"code\": 0}", "{\"code\": 2}", "{\"code\": 3}"]
+	for json in jsons:
+		soc.sendall(json + "\n")
+		time.sleep(5)
     
+if __name__ == "__main__":
+	soc = createsocket()
+	runclient(soc)
 
 """
 mifare = nxppy.Mifare()
