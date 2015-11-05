@@ -21,10 +21,14 @@ def post_json(url, event):
         return False
 
 # PI
-def read_id(file_location):
-    f = open(file_location, 'r')
-    id = f.read()
-    return id.strip()
+def read_config(file_location):
+    settings = {}
+	with open(file_location, 'r') as f
+		for line in f:
+			list = line.strip().split()
+			settings[list[0]] = list[1]
+	
+	return settings
 
 # SENSORS
 def run_sensor_thread(queue):
