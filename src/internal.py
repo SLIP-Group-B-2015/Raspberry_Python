@@ -29,6 +29,7 @@ def receive(raspberry_id):
         
     string = queue.get()
     event = parse_string(string)
+    event['raspberry'] = raspberry_id
     return event
 
 def parse_string(string):

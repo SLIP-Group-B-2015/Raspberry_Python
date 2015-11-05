@@ -12,7 +12,6 @@ POS_RESPONSE = "True"
 def post_json(url, event):
     try:
         response = requests.post(url, json=event)
-
         if (response.text == POS_RESPONSE):
             return True
         else: 
@@ -47,9 +46,9 @@ def run_phone_thread(queue):
     p = subprocess.Popen(['stdbuf', '-oL', 'explorenfc-cardemulation'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     
     while 1:
-        line = p.stdout.readline()
-        #time.sleep(3)
-        #line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
+        #line = p.stdout.readline()
+        time.sleep(3)
+        line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
         if (line != "Card Emulation started."):
             line = line.replace("Message: ","",1)
             queue.put(line)
