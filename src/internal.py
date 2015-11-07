@@ -28,11 +28,10 @@ def receive(raspberry_id):
         pass
         
     string = queue.get()
-    event = parse_string(string)
-    event['raspberry'] = raspberry_id
+    event = parse_string(string, raspberry_id)
     return event
 
-def parse_string(string):
+def parse_string(string, raspberry_id):
     parsed_json = {}
     
     if (string[0] == "{"): # string is already json
@@ -41,6 +40,7 @@ def parse_string(string):
     else: # string isn't a json
         parsed_json['event'] = event_codes[string]
         
-    parsed_json['time'] = str(datetime.datetime.now())
+    parsed_json['time'] = str(datetime.datetime.now())  # add timestamp
+    parsed_json['raspberry'] = raspberry_id             # add raspberry_id
     
     return parsed_json
