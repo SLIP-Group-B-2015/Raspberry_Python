@@ -14,8 +14,8 @@ import json
 queue = Queue.Queue()
 event_codes = {'0':'CLOSE', '1':'OPEN', '2':'KNOCK', '3':'MAIL'}
 
-def spawn_handlers():
-    sensor_thread = threading.Thread(target = communication.run_sensor_thread, args=(queue,))
+def spawn_handlers(sensor_mac):
+    sensor_thread = threading.Thread(target = communication.run_sensor_thread, args=(queue,sensor_mac))
     phone_thread = threading.Thread(target = communication.run_phone_thread, args=(queue,))
     sensor_thread.setDaemon(True)
     phone_thread.setDaemon(True)

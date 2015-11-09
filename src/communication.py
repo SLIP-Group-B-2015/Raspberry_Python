@@ -31,7 +31,7 @@ def read_config(file_location):
     return settings
 
 # SENSORS
-def run_sensor_thread(queue):
+def run_sensor_thread(queue, sensor_mac):
     while 1:
         pass
 

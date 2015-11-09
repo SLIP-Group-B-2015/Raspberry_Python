@@ -48,7 +48,7 @@ if __name__ == "__main__":
     print("Server URL set to " + server_url)
     
     # Spawn threads
-    internal.spawn_handlers()
+    internal.spawn_handlers(sensor_mac)
     
     while 1:
         latest_event = internal.receive(raspberry_id)
