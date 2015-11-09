@@ -10,7 +10,7 @@ import internal
 import sys
 import json
 
-DEFAULT_LOCATION = "/home/pi/Desktop/config.ini" # "C:/source.id"
+DEFAULT_LOCATION = "/home/pi/Desktop/config.ini"
 file_location = ""
 
 if __name__ == "__main__":
