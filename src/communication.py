@@ -23,12 +23,12 @@ def post_json(url, event):
 # PI
 def read_config(file_location):
     settings = {}
-	with open(file_location, 'r') as f
-		for line in f:
-			list = line.strip().split()
-			settings[list[0]] = list[1]
+    with open(file_location, 'r') as f:
+        for line in f:
+            list = line.strip().split()
+            settings[list[0]] = list[1]
 	
-	return settings
+    return settings
 
 # SENSORS
 def run_sensor_thread(queue):
@@ -50,9 +50,9 @@ def run_phone_thread(queue):
     p = subprocess.Popen(['stdbuf', '-oL', 'explorenfc-cardemulation'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     
     while 1:
-        #line = p.stdout.readline()
-        time.sleep(3)
-        line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
-        if (line != "Card Emulation started."):
+        line = p.stdout.readline()
+        # time.sleep(3)
+        # line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
+        if (line != "Card Emulation started.\n"):
             line = line.replace("Message: ","",1)
             queue.put(line)
