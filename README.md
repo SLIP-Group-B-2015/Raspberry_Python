@@ -6,4 +6,4 @@ This is the code which runs on the Raspberry Pi element of the smart door integr
 
 ## Environment
 
-This project is developed using the NetBeans IDE.
+This project is developed using the latest version of the PyCharm IDE.
