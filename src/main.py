@@ -58,7 +58,8 @@ if __name__ == "__main__":
             print("Posting JSON: " + json.dumps(latest_event) + " to server")
 
         success = communication.post_json(server_url, latest_event)
-        if DEBUG and success:
-            print("HTTP post succeeded")
-            
-            
+        if DEBUG:
+            if success:
+                print("HTTP post succeeded")
+            else:
+                print("HTTP post failed")

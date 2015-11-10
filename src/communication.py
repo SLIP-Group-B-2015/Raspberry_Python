@@ -5,10 +5,12 @@ import subprocess
 
 __author__ = "Marshall"
 
-# SERVER
 POS_RESPONSE = "True"
+MESSAGE_HEADER = "Message: "
+PHONE_SUBPROCESS = ['stdbuf', '-oL', 'explorenfc-cardemulation']
 
 
+# SERVER
 def post_json(url, event):
     try:
         response = requests.post(url, json=event)
@@ -17,7 +19,7 @@ def post_json(url, event):
         else: 
             return False
     
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return False
 
 
@@ -50,12 +52,12 @@ dev.disconnect()
 # PHONE
 def run_phone_thread(queue):    
     
-    p = subprocess.Popen(['stdbuf', '-oL', 'explorenfc-cardemulation'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p = subprocess.Popen(PHONE_SUBPROCESS, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     
     while 1:
         line = p.stdout.readline()
         # time.sleep(3)
         # line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
-        if "Message" in line:
-            line = line.replace("Message: ", "", 1)
+        if MESSAGE_HEADER in line:
+            line = line.replace(MESSAGE_HEADER, "", 1)
             queue.put(line)
