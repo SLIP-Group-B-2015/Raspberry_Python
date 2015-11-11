@@ -52,14 +52,18 @@ if __name__ == "__main__":
     internal.spawn_handlers(sensor_mac)
     
     while 1:
-        latest_event = internal.receive(raspberry_id)
-        if DEBUG:
-            print("Received event")
-            print("Posting JSON: " + json.dumps(latest_event) + " to server")
+        try:
+            latest_event = internal.receive(raspberry_id)
+            if DEBUG:
+                print("Received event")
+                print("Posting JSON: " + json.dumps(latest_event) + " to server")
 
-        success = communication.post_json(server_url, latest_event)
-        if DEBUG:
-            if success:
-                print("HTTP post succeeded")
-            else:
-                print("HTTP post failed")
+            success = communication.post_json(server_url, latest_event)
+            if DEBUG:
+                if success:
+                    print("HTTP post succeeded")
+                else:
+                    print("HTTP post failed")
+        except KeyError:
+            if DEBUG:
+                print("Bad sensor/phone message received")
