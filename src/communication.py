@@ -2,6 +2,7 @@
 
 import requests
 import subprocess
+import pygatt
 
 __author__ = "Marshall"
 
@@ -36,8 +37,14 @@ def read_config(file_location):
 
 # SENSORS
 def run_sensor_thread(queue, sensor_mac):
-    while 1:
-        pass
+    pygatt.util.reset_bluetooth_controller()
+    dev = pygatt.pygatt.BluetoothLEDevice(sensor_mac, app_options='-t random')
+    dev.connect()
+    def on_door_event(value):
+        queue.put(str(value[0]))
+    def on_post_event():
+        queue.put("3")
+
 
 """
 MACADD = 'D2:70:C8:15:2B:97'
