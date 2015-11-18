@@ -57,8 +57,6 @@ def run_phone_thread(queue):
     while 1:
         line = p.stdout.readline().strip()
         print(line)
-        # time.sleep(3)
-        # line = "{\"user\":\"b67d69b1-aa3e-4d07-82af-7c4cc6a5d26f\"}"
         if MESSAGE_HEADER in line:
             line = line.replace(MESSAGE_HEADER, "", 1).strip()
             queue.put(line)
