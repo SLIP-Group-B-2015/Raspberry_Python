@@ -28,7 +28,7 @@ if __name__ == "__main__":
     settings = communication.read_config(file_location)
 
     # Set debug level
-    debug_str = settings['DEBUG']
+    debug_str = settings['debug']
     if debug_str.lower() == "true":
             DEBUG = True
             print("Debug mode is ON")
@@ -37,15 +37,15 @@ if __name__ == "__main__":
             print("Debug mode is OFF")
 
     # Set raspberry id
-    raspberry_id = settings['RASPBERRY_ID']
+    raspberry_id = settings['raspberry_id']
     print("Source ID set to " + raspberry_id)
 
     # Set sensor MAC address
-    sensor_mac = settings['SENSOR_MAC']
+    sensor_mac = settings['sensor_mac']
     print("Sensor MAC address set to: " + sensor_mac)
 
     # Set server url
-    server_url = settings['SERVER_URL']
+    server_url = settings['server_url']
     print("Server URL set to " + server_url)
     
     # Spawn threads

@@ -29,8 +29,11 @@ def receive(raspberry_id):
         pass
         
     string = queue.get()
-    event = parse_string(string, raspberry_id)
-    return event
+    try:
+        event = parse_string(string, raspberry_id)
+        return event
+    except ValueError:
+        print("Bad message \"" + string + "\" received")
 
 
 def parse_string(string, raspberry_id):
