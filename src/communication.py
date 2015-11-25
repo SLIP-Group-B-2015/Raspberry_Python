@@ -61,8 +61,12 @@ def run_sensor_thread(queue, sensor_mac):
     def on_post_event(handle, value):
         queue.put("3")
 
+    def on_knock_event(handle, value):
+        queue.put("2")
+
     dev.subscribe(DOOR_UUID, on_door_event)
     dev.subscribe(MAIL_UUID, on_post_event)
+    dev.subscribe(KNOCK_UUID, on_knock_event)
     dev.run()
 
 
